@@ -3,27 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Placement Tracker | Dashboard</title>
+    <title>Placement Tracker | Next-Gen Dashboard</title>
+    <!-- Modern Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- AUTHENTICATION OVERLAY (Shown when not logged in) -->
+    <!-- Animated Tech Background -->
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+
+    <!-- AUTHENTICATION OVERLAY -->
     <div id="auth-overlay" class="auth-overlay">
-        <div class="auth-box">
-            <div class="auth-logo">✦</div>
+        <div class="auth-box glass-panel">
+            <div class="auth-logo pulse-anim">✦</div>
             <h2 id="auth-title">Welcome Back</h2>
             <p id="auth-subtitle">Login to manage your applications</p>
             
             <form id="auth-form">
                 <div class="form-group">
                     <label>Username</label>
-                    <input type="text" id="auth-username" required autocomplete="username">
+                    <input type="text" id="auth-username" required autocomplete="username" placeholder="Enter your username">
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="password" id="auth-password" required autocomplete="current-password">
+                    <input type="password" id="auth-password" required autocomplete="current-password" placeholder="Enter your password">
                 </div>
-                <button type="submit" class="btn btn-primary" id="auth-btn">Login to Dashboard</button>
+                <button type="submit" class="btn btn-primary glow-btn full-width" id="auth-btn">Login to Dashboard</button>
             </form>
             
             <p class="auth-toggle">
@@ -34,15 +41,15 @@
         </div>
     </div>
 
-    <!-- MAIN DASHBOARD (Hidden until authenticated) -->
+    <!-- MAIN DASHBOARD -->
     <div class="container" id="dashboard" style="display: none;">
-        <!-- Premium Header Section -->
-        <header class="dashboard-header">
+        <!-- Premium Header -->
+        <header class="dashboard-header glass-panel">
             <div>
-                <h1>Placement Tracker.</h1>
-                <p>Welcome back, <span id="user-display-name" style="font-weight: 600; color: var(--primary);">User</span>!</p>
+                <h1 class="gradient-text">Placement Tracker.</h1>
+                <p>Welcome back, <span id="user-display-name" class="highlight-text">User</span>!</p>
             </div>
-            <button id="logout-btn" class="btn btn-outline">
+            <button id="logout-btn" class="btn btn-outline glass-btn">
                 <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
                 </svg>
@@ -50,30 +57,17 @@
             </button>
         </header>
 
-        <!-- Dynamic Statistics Deck -->
-        <section class="stats">
-            <div class="stat-card">
-                <h3>Total Tracked</h3>
-                <p id="total-count">0</p>
-            </div>
-            <div class="stat-card selected">
-                <h3>Offers Extended</h3>
-                <p id="selected-count">0</p>
-            </div>
-            <div class="stat-card rejected">
-                <h3>Opportunities Closed</h3>
-                <p id="rejected-count">0</p>
-            </div>
-        </section>
-
-        <!-- Main Dashboard Layout -->
-        <section class="main-content">
-            <!-- Left Side: Colorful Sidebar Form -->
-            <aside class="add-application">
+        <!-- Bento Box Layout -->
+        <div class="bento-grid">
+            
+            <!-- Left Sidebar Form -->
+            <aside class="add-application glass-panel slide-up" style="animation-delay: 0.1s;">
                 <h2>
-                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 5v14M5 12h14"></path>
-                    </svg>
+                    <div class="icon-box">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 5v14M5 12h14"></path>
+                        </svg>
+                    </div>
                     New Application
                 </h2>
                 <form id="app-form">
@@ -91,41 +85,83 @@
                     </div>
                     <div class="form-group">
                         <label for="status">Current Phase</label>
-                        <select id="status">
-                            <option value="Applied">Just Applied</option>
-                            <option value="Interviewing">Interviewing...</option>
-                            <option value="Selected">Offer Extended!</option>
-                            <option value="Rejected">Rejected</option>
-                        </select>
+                        <div class="select-wrapper">
+                            <select id="status">
+                                <option value="Applied">Just Applied</option>
+                                <option value="Interviewing">Interviewing...</option>
+                                <option value="Selected">Offer Extended!</option>
+                                <option value="Rejected">Rejected</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="notes">Internal Notes</label>
                         <textarea id="notes" rows="3" placeholder="Recruiter names, tech stack used..."></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem;">
+                    <button type="submit" class="btn btn-primary glow-btn full-width">
                         Save Application
                     </button>
                 </form>
             </aside>
 
-            <!-- Right Side: Application Feed -->
-            <main class="applications-list">
-                <div class="list-header">
-                    <h2>Active Pipeline</h2>
-                    <div class="search-box">
-                        <svg class="search-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <path d="M21 21l-4.35-4.35"></path>
-                        </svg>
-                        <input type="text" id="search" placeholder="Search by company or role...">
+            <!-- Right Main Area -->
+            <div class="bento-main">
+                
+                <!-- Dynamic Statistics Deck -->
+                <section class="stats">
+                    <div class="stat-card glass-panel slide-up" style="animation-delay: 0.2s;">
+                        <div class="stat-icon purple-glow">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>Total Tracked</h3>
+                            <p id="total-count">0</p>
+                        </div>
                     </div>
-                </div>
-                <!-- Interactive Pipeline Container -->
-                <div id="apps-container" class="apps-container">
-                    <!-- Cards are dynamically injected via Javascript -->
-                </div>
-            </main>
-        </section>
+                    <div class="stat-card glass-panel selected slide-up" style="animation-delay: 0.3s;">
+                        <div class="stat-icon green-glow">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>Offers Extended</h3>
+                            <p id="selected-count">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card glass-panel rejected slide-up" style="animation-delay: 0.4s;">
+                        <div class="stat-icon red-glow">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>Opportunities Closed</h3>
+                            <p id="rejected-count">0</p>
+                        </div>
+                    </div>
+                </section>
+
+                <main class="applications-list glass-panel slide-up" style="animation-delay: 0.5s;">
+                    <div class="list-header">
+                        <h2>Active Pipeline</h2>
+                        <div class="search-box">
+                            <svg class="search-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35"></path>
+                            </svg>
+                            <input type="text" id="search" placeholder="Search by company or role...">
+                        </div>
+                    </div>
+                    <!-- Interactive Pipeline Container -->
+                    <div id="apps-container" class="apps-container">
+                        <!-- Cards are dynamically injected via Javascript -->
+                    </div>
+                </main>
+            </div>
+        </div>
     </div>
 
     <!-- Frontend logic -->

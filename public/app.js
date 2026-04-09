@@ -230,7 +230,7 @@ function renderApplications(appsToRender) {
 
     if (appsToRender.length === 0) {
         container.innerHTML = `
-        <div style="text-align: center; padding: 2rem; color: var(--text-muted); background: white; border-radius: 12px; border: 1px dashed var(--border-light);">
+        <div style="text-align: center; padding: 3rem; color: var(--text-muted); background: rgba(0,0,0,0.2); border-radius: 16px; border: 1px dashed var(--glass-border); backdrop-filter: blur(10px);">
             <p>You haven't added any applications yet.</p>
         </div>`;
         return;
