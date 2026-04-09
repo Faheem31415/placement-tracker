@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Tracker | Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- AUTHENTICATION OVERLAY (Shown when not logged in) -->
+    <div id="auth-overlay" class="auth-overlay">
+        <div class="auth-box">
+            <div class="auth-logo">✦</div>
+            <h2 id="auth-title">Welcome Back</h2>
+            <p id="auth-subtitle">Login to manage your applications</p>
+            
+            <form id="auth-form">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="auth-username" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="auth-password" required autocomplete="current-password">
+                </div>
+                <button type="submit" class="btn btn-primary" id="auth-btn">Login to Dashboard</button>
+            </form>
+            
+            <p class="auth-toggle">
+                <span id="auth-toggle-text">Don't have an account?</span> 
+                <a href="#" id="auth-toggle-btn">Register here</a>
+            </p>
+            <p id="auth-error" class="error-msg"></p>
+        </div>
+    </div>
+
+    <!-- MAIN DASHBOARD (Hidden until authenticated) -->
+    <div class="container" id="dashboard" style="display: none;">
+        <!-- Premium Header Section -->
+        <header class="dashboard-header">
+            <div>
+                <h1>Placement Tracker.</h1>
+                <p>Welcome back, <span id="user-display-name" style="font-weight: 600; color: var(--primary);">User</span>!</p>
+            </div>
+            <button id="logout-btn" class="btn btn-outline">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                </svg>
+                Logout
+            </button>
+        </header>
+
+        <!-- Dynamic Statistics Deck -->
+        <section class="stats">
+            <div class="stat-card">
+                <h3>Total Tracked</h3>
+                <p id="total-count">0</p>
+            </div>
+            <div class="stat-card selected">
+                <h3>Offers Extended</h3>
+                <p id="selected-count">0</p>
+            </div>
+            <div class="stat-card rejected">
+                <h3>Opportunities Closed</h3>
+                <p id="rejected-count">0</p>
+            </div>
+        </section>
+
+        <!-- Main Dashboard Layout -->
+        <section class="main-content">
+            <!-- Left Side: Colorful Sidebar Form -->
+            <aside class="add-application">
+                <h2>
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 5v14M5 12h14"></path>
+                    </svg>
+                    New Application
+                </h2>
+                <form id="app-form">
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" required placeholder="e.g. Google, Microsoft">
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Target Role</label>
+                        <input type="text" id="role" required placeholder="e.g. Frontend Engineer">
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date Applied</label>
+                        <input type="date" id="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Current Phase</label>
+                        <select id="status">
+                            <option value="Applied">Just Applied</option>
+                            <option value="Interviewing">Interviewing...</option>
+                            <option value="Selected">Offer Extended!</option>
+                            <option value="Rejected">Rejected</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Internal Notes</label>
+                        <textarea id="notes" rows="3" placeholder="Recruiter names, tech stack used..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem;">
+                        Save Application
+                    </button>
+                </form>
+            </aside>
+
+            <!-- Right Side: Application Feed -->
+            <main class="applications-list">
+                <div class="list-header">
+                    <h2>Active Pipeline</h2>
+                    <div class="search-box">
+                        <svg class="search-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="M21 21l-4.35-4.35"></path>
+                        </svg>
+                        <input type="text" id="search" placeholder="Search by company or role...">
+                    </div>
+                </div>
+                <!-- Interactive Pipeline Container -->
+                <div id="apps-container" class="apps-container">
+                    <!-- Cards are dynamically injected via Javascript -->
+                </div>
+            </main>
+        </section>
+    </div>
+
+    <!-- Frontend logic -->
+    <script src="app.js"></script>
+</body>
+</html>
