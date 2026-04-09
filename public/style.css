@@ -137,6 +137,16 @@ input:focus, select:focus, textarea:focus {
 
 input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.3); }
 
+/* Stylish Date Picker Icon for Dark Theme */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1) opacity(0.6);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    filter: invert(1) opacity(1);
+}
+
 /* Buttons */
 .btn {
     display: inline-flex; justify-content: center; align-items: center; gap: 0.5rem;
@@ -304,7 +314,22 @@ select option { background: #0F172A; }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
 
+@media (max-width: 768px) {
+    body { padding: 1rem; }
+    .dashboard-header { padding: 1.5rem 1rem; flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .gradient-text { font-size: 1.6rem; }
+    .auth-box { padding: 2.5rem 1.5rem; }
+    .add-application, .applications-list { padding: 1.5rem; }
+    .stat-card { padding: 1.2rem; }
+    .stat-card p { font-size: 1.8rem; }
+    .stats { grid-template-columns: 1fr; }
+    .list-header { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+    .search-box { max-width: 100%; }
+}
+
 @media (max-width: 600px) {
     .app-card { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
-    .app-actions { width: 100%; align-items: flex-start; flex-direction: row; justify-content: space-between; }
+    .app-actions { width: 100%; align-items: stretch; flex-direction: column; gap: 1rem; }
+    .controls-row { width: 100%; justify-content: space-between; }
+    .status-select { flex: 1; }
 }
